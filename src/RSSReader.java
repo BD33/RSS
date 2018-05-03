@@ -11,8 +11,10 @@ import components.xmltree.XMLTree;
 import components.xmltree.XMLTree1;
 
 /**
- * Program to convert an XML RSS (version 2.0) feed from a given URL into the
- * corresponding HTML output file.
+ * A simple RSS reader that converts an XML RSS (version 2.0) feed from a
+ * collection of popular news sites into the corresponding HTML output file onto
+ * the users desktop.
+ *
  *
  * @author William DeNiro
  *
@@ -263,6 +265,7 @@ public final class RSSReader {
         SimpleWriter out = new SimpleWriter1L();
         boolean con = true;
         while (con) {
+            //date base of popular news rss feeds
             String url = JOptionPane.showInputDialog("Enter a news site");
             if (url.equals("cnn")) {
                 url = "http://rss.cnn.com/rss/cnn_topstories.rss";
@@ -275,6 +278,22 @@ public final class RSSReader {
             }
             if (url.equals("fox")) {
                 url = "http://feeds.foxnews.com/foxnews/latest";
+            }
+            if (url.equals("espn")) {
+                url = "http://www.espn.com/espn/rss/news";
+            }
+            if (url.equals("nytimes")) {
+                url = "http://rss.nytimes.com/services/xml/rss/nyt/HomePage.xml";
+            }
+
+            if (url.equals("wash")) {
+                url = "http://feeds.washingtonpost.com/rss/rss_election-2012";
+            }
+
+            if (url.equals("twitter")) {
+                String name = JOptionPane.showInputDialog(
+                        "Enter the username of the twitter feed you want");
+                url = "https://twitrss.me/twitter_user_to_rss/?user=" + name;
             }
 
             XMLTree xml = new XMLTree1(url);
@@ -302,6 +321,10 @@ public final class RSSReader {
 
                 if (url.equals("espn")) {
                     url = "http://www.espn.com/espn/rss/news";
+                }
+
+                if (url.equals("nytimes")) {
+                    url = "https://archive.nytimes.com/www.nytimes.com/services/xml/rss/index.html?8dpc";
                 }
 
                 xml = new XMLTree1(url);
