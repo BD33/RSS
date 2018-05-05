@@ -266,31 +266,36 @@ public final class RSSReader {
         boolean con = true;
         while (con) {
             //date base of popular news rss feeds
-            String url = JOptionPane.showInputDialog("Enter a news site");
-            if (url.equals("cnn")) {
+            String url = JOptionPane.showInputDialog(
+                    "Enter a news site from a news source below \n - CNN"
+                            + "\n -ABC" + "\n -CBS" + " \n -FOX " + "\n -ESPN"
+                            + "\n -NYTimes" + "\n -Washington Post"
+                            + "\n -Twitter");
+            if (url.equals("cnn") || url.equals("CNN")) {
                 url = "http://rss.cnn.com/rss/cnn_topstories.rss";
             }
-            if (url.equals("abc")) {
+            if (url.equals("abc") || url.equals("ABC")) {
                 url = "http://feeds.abcnews.com/abcnews/topstories";
             }
-            if (url.equals("cbs")) {
+            if (url.equals("cbs") || url.equals("CBS")) {
                 url = "https://www.cbsnews.com/latest/rss/main";
             }
-            if (url.equals("fox")) {
+            if (url.equals("fox") || url.equals("FOX")) {
                 url = "http://feeds.foxnews.com/foxnews/latest";
             }
-            if (url.equals("espn")) {
+            if (url.equals("espn") || url.equals("ESPN")) {
                 url = "http://www.espn.com/espn/rss/news";
             }
-            if (url.equals("nytimes")) {
+            if (url.equals("nytimes") || url.equals("NYTimes")) {
                 url = "http://rss.nytimes.com/services/xml/rss/nyt/HomePage.xml";
             }
 
-            if (url.equals("wash")) {
+            if (url.equals("washington post")
+                    || url.equals("Washington Post")) {
                 url = "http://feeds.washingtonpost.com/rss/rss_election-2012";
             }
 
-            if (url.equals("twitter")) {
+            if (url.equals("twitter") || url.equals("Twitter")) {
                 String name = JOptionPane.showInputDialog(
                         "Enter the username of the twitter feed you want");
                 url = "https://twitrss.me/twitter_user_to_rss/?user=" + name;
@@ -330,8 +335,10 @@ public final class RSSReader {
                 xml = new XMLTree1(url);
             }
             // sets a new file based on what the user types in
+            String desktop = System.getProperty("user.home") + "/Desktop/";
+
             SimpleWriter fileOut = new SimpleWriter1L(
-                    "/Users/williamdeniro/Desktop/" + outfileName + ".html");
+                    desktop + outfileName + ".html");
 
             // passes the xml child and the newly created file to the output header file
             outputHeader(xml.child(0), fileOut);
